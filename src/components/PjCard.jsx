@@ -14,6 +14,7 @@ export default function PjCard({character}) {
           <br />
           Origen: {origin.name}
         </Card.Text>
+        <button className='btn btn-success'>Ir</button>
       </Card.Body>
     </Card>
   )
