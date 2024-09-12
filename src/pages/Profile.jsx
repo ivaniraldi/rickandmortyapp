@@ -2,22 +2,29 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import NavigationBar from "../components/NavigationBar";
 import { useContext } from "react";
-import { PersonajeContext } from "../contexts/PersonajesContext";
+import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "../contexts/GlobalContext";
 
 export default function Profile() {
-  const { personaje } = useContext(PersonajeContext);
+  const { user, setUser } = useContext(GlobalContext);
+  const navigate = useNavigate();
+
+  const cerrarSesion = () => {
+    navigate("/")
+    setUser({ username : "", password: "",  token: false})
+  }
   return (
     <div>
       <NavigationBar></NavigationBar>
       <div>
+        {user? 
         <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={personaje.image} />
           <Card.Body>
-            <Card.Title>{personaje.name}</Card.Title>
-            <Card.Text>{personaje.species}</Card.Text>
-            <Button variant="primary">Salir</Button>
+            <Card.Title>{user.username}</Card.Title>
+            <Card.Text>{user.password}</Card.Text>
+            <Button onClick={()=>{cerrarSesion()}} variant="primary">Cerrar sesión</Button>
           </Card.Body>
-        </Card>
+        </Card> : <><h2>Loading...</h2></>}
       </div>
     </div>
   );

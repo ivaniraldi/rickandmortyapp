@@ -6,11 +6,17 @@ export const PersonajeContext = createContext();
 const PersonajesProvider = ({ children }) => {
   const [personajes, setPersonajes] = useState([]);
   const [personaje, setPersonaje] = useState({})
+
   const getCharacters = async () => {
     const response = await fetch("https://rickandmortyapi.com/api/character");
     const data = await response.json();
-    setPersonaje(data.results[0])
     setPersonajes(data.results);
+  };
+
+  const getCharacter = async (id) => {
+    const response = await fetch("https://rickandmortyapi.com/api/character/" + id);
+    const data = await response.json();
+    setPersonaje(data)
   };
 
   useEffect(() => {
@@ -19,7 +25,7 @@ const PersonajesProvider = ({ children }) => {
 
 
   return (
-    <PersonajeContext.Provider value={{ personajes, setPersonajes, personaje }}>
+    <PersonajeContext.Provider value={{ personajes, setPersonajes, personaje, getCharacter }}>
       {children}
     </PersonajeContext.Provider>
   );

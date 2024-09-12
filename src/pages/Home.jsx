@@ -7,22 +7,15 @@ import { PersonajeContext } from "../contexts/PersonajesContext";
 export default function Home() {
   const { personajes } = useContext(PersonajeContext);
 
-
   return (
     <>
-      <NavigationBar></NavigationBar>
-
-    <div className="contenedorPj">
-
-      {personajes.map((p, i) => {
-        return (
-          <PjCard key={i} character={p}/>
-        )
-      })}
-
-    </div>
-
-      <Footer></Footer>
+      <NavigationBar />
+      <div className="contenedorPj">
+        {personajes.map((p, i) => {
+          return <PjCard key={i} character={p} />;
+        })}
+      </div>
+      <Footer />
     </>
-  )
+  );
 }

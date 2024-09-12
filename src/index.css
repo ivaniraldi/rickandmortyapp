@@ -28,3 +28,15 @@
     height: 100vh;
     justify-content: space-between;
 }
+
+.linkActivo{
+    color: black;
+    text-decoration: underline;
+    margin-left: 10px;
+    font-weight: bolder;
+}
+.linkInactivo{
+    color: gray;
+    margin-left: 10px;
+    text-decoration: none;
+}
